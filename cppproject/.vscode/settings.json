@@ -1,0 +1,10 @@
+{
+    "editor.fontLigatures": false,
+    "editor.mouseWheelZoom": true
+    // ,
+    // "terminal.integrated.fontFamily": "Lucida Console",
+
+    // "[cpp]": {"files.encoding": "gbk"},
+
+    // "[c]": {"files.encoding": "gbk"}
+}
