@@ -26,16 +26,127 @@ using namespace std;
 
 chessboard::chessboard(void)
 {
-    upside = 6;
-    cout<<"llyniubi!" << endl;
 }
 
 void chessboard::CBdisplay(void)
 {
-    if(upside == 6)
-    {
-        cout<<"llyniubi!" << endl;
-    }
+	int i, j;
+	char line;
+	char ary;
+	
+	system("cls");   //清屏
+
+	for(j = 0,line = 15; j <= SIZE - 1; j++)
+	{
+		printf("%2d",line);
+		line -= 1;
+		for(i = 0; i <= SIZE - 1; i++)
+		{
+			switch(Board[j][i])
+			{
+			case 1:
+				printf("┏");
+				break;
+				
+			case 2:
+				printf("┓");
+				break;
+				
+			case 3:
+				printf("┛");
+				break;
+				
+			case 4:
+				printf("┗");
+				break;
+				
+			case 5:
+				printf("┠");
+				break;
+				
+			case 6:
+				printf("┯");
+				break;
+				
+			case 7:
+				printf("┨");
+				break;
+				
+			case 8:
+				printf("┷");
+				break;
+				
+			case 9:
+				printf("┼");
+				break;
+				
+			case BLACKtem:      // 黑子上一步
+				printf("▲");
+				break;
+				
+			case WHITEtem:      //白子上一步
+				printf("△");
+				break;
+				
+			case BLACK:      //黑子通常
+				printf("●");
+				break;
+				
+			case WHITE:
+				printf("○");  //白子通常
+				break;
+			}
+			if(i == SIZE - 1)
+			{
+				printf("\n");
+			}
+			
+		}
+	}
+	
+	printf("   ");
+	for (ary = 'A'; ary < 'A' + SIZE ; ary++)
+		printf("%c ",ary);
+	
+	printf("\n");
+}
+
+void chessboard::InitBoardArray(void)
+{
+    int j, i; 
+	
+	Board[0][0] = 1;
+	Board[0][SIZE - 1] = 2;
+	Board[SIZE - 1][SIZE - 1] = 3;
+	Board[SIZE - 1][0] = 4;
+	
+	for (j = 1; j <= SIZE - 2; j++)
+	{
+		Board[j][0] = 5;
+	}
+	
+	for (i = 1; i <= SIZE - 2; i++)
+	{
+		Board[0][i] = 6;
+	}
+	
+	for (j = 1; j <= SIZE - 2; j++)
+	{
+		Board[j][SIZE - 1] = 7;
+	}
+	
+	for (i = 1; i <= SIZE - 2; i++)
+	{
+		Board[SIZE - 1][i] = 8;
+	}
+	
+	for (j = 1; j <= SIZE - 2; j++)
+	{
+		for (i = 1; i <= SIZE - 2; i++)
+		{
+			Board[j][i] = 9;
+		}
+	}
 }
 // chessboard::~chessboard()
 // {

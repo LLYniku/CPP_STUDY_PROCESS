@@ -17,10 +17,24 @@ using namespace std;
 
 int main()
 {
-    chessboard AB;
-    cout<<"llyniubi!" << endl;
-    AB.CBdisplay();
-    
+    char y;
+	int x;
+    chessboard chessboard;
+    chessboard.InitBoardArray();
+    chessboard.CBdisplay();
+    while(1)
+    {
+        scanf("%c%d",&y,&x);  //获得屏幕输入的坐标
+        getchar();
+        
+        chessboard.Board[SIZE-x][y-'a'] = BLACK;	//改变数组对应的数值
+        chessboard.CBdisplay();
 
-    return 0;
+        scanf("%c%d",&y,&x);
+        getchar();
+        
+        chessboard.Board[SIZE-x][y-'a'] = WHITE;
+        chessboard.CBdisplay();
+    }
+    // system("pause");
 }
