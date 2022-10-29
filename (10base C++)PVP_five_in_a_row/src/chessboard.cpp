@@ -8,19 +8,35 @@ display棋盘每次刷新界面，注意需要记录上次下棋的位置
 裁判对象：禁手以及获胜条件
 */
 
-/*【人机对战】
-加入时钟对象，加入智多星（计算每个棋盘上面的点的权重，注意已经下过的不能使用）
-*/
 #include <iostream>
 #include "../include/chessboard.h"
 using namespace std;
 
-int main()
-{
-    chessboard AB;
-    cout<<"llyniubi!" << endl;
-    AB.CBdisplay();
-    
+// class chessboard
+// {
+// public:
+//     chessboard();
+//     //~chessboard();
+//     void CBdisplay(void);
+// private:
+//     /* data */
+//     int upside;
+//     int downside;
+// };
 
-    return 0;
+chessboard::chessboard(void)
+{
+    upside = 6;
+    cout<<"llyniubi!" << endl;
 }
+
+void chessboard::CBdisplay(void)
+{
+    if(upside == 6)
+    {
+        cout<<"llyniubi!" << endl;
+    }
+}
+// chessboard::~chessboard()
+// {
+// }
