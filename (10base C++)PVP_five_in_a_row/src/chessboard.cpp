@@ -9,7 +9,10 @@ display棋盘每次刷新界面，注意需要记录上次下棋的位置
 */
 
 #include <iostream>
+#include "../include/player.h"
 #include "../include/chessboard.h"
+#include "../include/chess.h"
+#include "../include/judgment.h"
 using namespace std;
 
 // class chessboard
@@ -26,94 +29,7 @@ using namespace std;
 
 chessboard::chessboard(void)
 {
-}
-
-void chessboard::CBdisplay(void)
-{
-	int i, j;
-	char line;
-	char ary;
-	
-	system("cls");   //清屏
-
-	for(j = 0,line = 15; j <= SIZE - 1; j++)
-	{
-		printf("%2d",line);
-		line -= 1;
-		for(i = 0; i <= SIZE - 1; i++)
-		{
-			switch(Board[j][i])
-			{
-			case 1:
-				printf("┏");
-				break;
-				
-			case 2:
-				printf("┓");
-				break;
-				
-			case 3:
-				printf("┛");
-				break;
-				
-			case 4:
-				printf("┗");
-				break;
-				
-			case 5:
-				printf("┠");
-				break;
-				
-			case 6:
-				printf("┯");
-				break;
-				
-			case 7:
-				printf("┨");
-				break;
-				
-			case 8:
-				printf("┷");
-				break;
-				
-			case 9:
-				printf("┼");
-				break;
-				
-			case BLACKtem:      // 黑子上一步
-				printf("▲");
-				break;
-				
-			case WHITEtem:      //白子上一步
-				printf("△");
-				break;
-				
-			case BLACK:      //黑子通常
-				printf("●");
-				break;
-				
-			case WHITE:
-				printf("○");  //白子通常
-				break;
-			}
-			if(i == SIZE - 1)
-			{
-				printf("\n");
-			}
-			
-		}
-	}
-	
-	printf("   ");
-	for (ary = 'A'; ary < 'A' + SIZE ; ary++)
-		printf("%c ",ary);
-	
-	printf("\n");
-}
-
-void chessboard::InitBoardArray(void)
-{
-    int j, i; 
+	int j, i; 
 	
 	Board[0][0] = 1;
 	Board[0][SIZE - 1] = 2;
@@ -148,6 +64,144 @@ void chessboard::InitBoardArray(void)
 		}
 	}
 }
+
+void chessboard::CBdisplay(void)
+{
+	int i, j;
+	char line;
+	char ary;
+
+
+	
+	system("cls");   //清屏
+
+
+
+	for(j = 0,line = 15; j <= SIZE - 1; j++)
+	{
+		printf("%2d",line);
+		line -= 1;
+		for(i = 0; i <= SIZE - 1; i++)
+		{
+			switch(Board[j][i])
+			{
+			case 1:
+				printf(" ┏ ");
+				break;
+				
+			case 2:
+				printf(" ┓ ");
+				break;
+				
+			case 3:
+				printf(" ┛ ");
+				break;
+				
+			case 4:
+				printf(" ┗ ");
+				break;
+				
+			case 5:
+				printf(" ┠ ");
+				break;
+				
+			case 6:
+				printf(" ┯ ");
+				break;
+				
+			case 7:
+				printf(" ┨ ");
+				break;
+				
+			case 8:
+				printf(" ┷ ");
+				break;
+				
+			case 9:
+				printf(" ┼ ");
+				break;
+				
+			case BLACKtem:      // 黑子上一步
+				printf(" ▲ ");
+				break;
+				
+			case WHITEtem:      //白子上一步
+				printf(" △ ");
+				break;
+				
+			case BLACK:      //黑子通常
+				printf(" ●");
+				break;
+				
+			case WHITE:
+				printf(" ○");  //白子通常
+				break;
+			}
+			if(i == SIZE - 1)
+			{
+				printf("\n");
+			}
+			
+		}
+	}
+	
+	printf("   ");
+	for (ary = 'A'; ary < 'A' + SIZE ; ary++)
+		printf(" %c ",ary);
+	
+	printf("\n");
+
+
+
+
+
+}
+
+
 // chessboard::~chessboard()
 // {
 // }
+
+
+void chessboard::win(void){
+
+        //win如果为0——黑胜，如果为1——百胜
+    int j,i;
+    chess chess;
+    //printf("black win!!!!!  %d",chess.His_output(0,0));
+    if(chess.His_output(0,0) == 1) printf("black win!!!!! NIUBI %d",chess.His_output(0,0));//每次检查一遍！黑子获胜！
+
+    for (i = 0; i <= SIZE - 1; i++)
+    {
+        for (j = 0; j <= SIZE - 1; j++)//每一个点为单位，只需要看以这个点为中央是否连成五个棋子就可以了，以黑棋为例win最后为1
+        {
+            if( chess.His_output( j , i - 2) == 1  && \
+            chess.His_output( j ,i - 1)  == 1 && \
+            chess.His_output( j ,i ) == 1 && \
+            chess.His_output( j ,i + 1) == 1 && \
+            chess.His_output( j ,i + 2) == 1) black = 1;
+
+            if( chess.His_output( j - 2, i ) == 1  && \
+            chess.His_output( j - 1 ,i )  == 1 && \
+            chess.His_output( j ,i ) == 1 && \
+            chess.His_output( j + 1 ,i ) == 1 && \
+            chess.His_output( j + 2 ,i ) == 1) black = 1;
+
+            if( chess.His_output( j , i - 2) == 1  && \
+            chess.His_output( j ,i - 1)  == 1 && \
+            chess.His_output( j ,i ) == 1 && \
+            chess.His_output( j ,i + 1) == 1 && \
+            chess.His_output( j ,i + 2) == 1) black = 1;
+
+            if( chess.His_output( j - 2, i ) == 1  && \
+            chess.His_output( j - 1 ,i )  == 1 && \
+            chess.His_output( j ,i ) == 1 && \
+            chess.His_output( j + 1 ,i ) == 1 && \
+            chess.His_output( j + 2 ,i ) == 1) black = 1;
+
+        }
+    }
+
+    if(black == 1) printf("black win!  ");
+    if(white == 1) printf("white win!  ");
+}

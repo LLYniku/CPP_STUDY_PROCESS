@@ -19,8 +19,10 @@ private:
 public:
     chessboard();         //构造函数
     void CBdisplay(void);
-    void InitBoardArray(void);//初始化空棋盘 
     int Board[SIZE][SIZE];
+    void win(void);
+    int black;
+    int white;
 };
 
 #endif

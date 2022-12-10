@@ -12,29 +12,25 @@ display棋盘每次刷新界面，注意需要记录上次下棋的位置
 加入时钟对象，加入智多星（计算每个棋盘上面的点的权重，注意已经下过的不能使用）
 */
 #include <iostream>
+// #include "../include/chess.cpp"
+// #include "../include/player.cpp"
+// #include "../include/judgment.cpp"
+// #include "../include/chessboard.cpp"
 #include "../include/chessboard.h"
+#include "../include/player.h"
+#include "../include/chess.h"
+#include "../include/judgment.h"
 using namespace std;
+
+
+
 
 int main()
 {
-    char y;
-	int x;
-    chessboard chessboard;
-    chessboard.InitBoardArray();
-    chessboard.CBdisplay();
-    while(1)
-    {
-        scanf("%c%d",&y,&x);  //获得屏幕输入的坐标
-        getchar();
-        
-        chessboard.Board[SIZE-x][y-'a'] = BLACK;	//改变数组对应的数值
-        chessboard.CBdisplay();
-
-        scanf("%c%d",&y,&x);
-        getchar();
-        
-        chessboard.Board[SIZE-x][y-'a'] = WHITE;
-        chessboard.CBdisplay();
-    }
     // system("pause");
+
+    player player;
+    player.input();
+    
+
 }
